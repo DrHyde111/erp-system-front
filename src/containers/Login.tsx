@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../styles/Login.css";
+import {signIn} from "../services/auth.services";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -12,8 +13,9 @@ export default function Login() {
     }
 
     // @ts-ignore
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
+        console.log(await signIn(email, password))
     }
 
     return (
@@ -36,7 +38,7 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </Form.Group>
-                <Button size="lg" type="submit" disabled={!validateForm()}>
+                <Button size="lg" type="submit" disabled={!validateForm()} onClick={handleSubmit}>
                     Login
                 </Button>
             </Form>
