@@ -3,10 +3,12 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../styles/Login.css";
 import {signIn} from "../services/auth.services";
+import {useAppContext} from "../services/context.services";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const {isAuthenticated, setUserHasAuthenticated} = useAppContext();
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -15,7 +17,14 @@ export default function Login() {
     // @ts-ignore
     async function handleSubmit(event) {
         event.preventDefault();
-        console.log(await signIn(email, password))
+        try {
+            await signIn(email, password)
+            if (setUserHasAuthenticated) {
+                setUserHasAuthenticated(true);
+            }
+        } catch (e) {
+            alert(e)
+        }
     }
 
     return (

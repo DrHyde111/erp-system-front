@@ -1,9 +1,9 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
-import Login from "./containers/Login";
-import NotFound from "./containers/NotFound";
+import Login from "./components/Login";
+import NotFound from "./components/NotFound";
 
-export default function Switch() {
+export default function PublicSwitch() {
     return (
         <Routes>
             <Route path="*" element={<NotFound/>}/>
