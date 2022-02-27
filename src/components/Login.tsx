@@ -23,7 +23,7 @@ export default function Login() {
             if (setUserHasAuthenticated) {
                 setUserHasAuthenticated(true);
                 if (setUser) {
-                    setUser(response.data.employeeInfo);
+                    setUser(response.employeeInfo);
                 }
             }
         } catch (e) {
