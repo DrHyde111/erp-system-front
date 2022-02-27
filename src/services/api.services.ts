@@ -1,4 +1,5 @@
 import axios, {AxiosError} from "axios";
+import {read} from "fs";
 
 const API = axios.create({baseURL: 'http://localhost:8080/api'});
 
@@ -42,5 +43,33 @@ export async function checkCurrentSession() {
         }
     }
 
+    return response.data;
+}
+
+export async function getLastUserAttendance(id: number) {
+    let response
+    try {
+        response = await API.get(`/employee/${id}/attendance/latest`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
+export async function attendanceControl(id: number){
+    let response
+    try {
+        response = await API.put(`/employee/${id}/attendance/`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
     return response.data;
 }

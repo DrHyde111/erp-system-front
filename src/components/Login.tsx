@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../styles/Login.css";
-import {signIn} from "../services/auth.services";
+import {signIn} from "../services/api.services";
 import {useAppContext} from "../services/context.services";
 
 export default function Login() {
