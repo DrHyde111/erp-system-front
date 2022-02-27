@@ -18,7 +18,7 @@ export async function signIn(email: string, password: string) {
     }
 
     localStorage.setItem('token', response.data.token)
-    return true;
+    return response.data;
 }
 
 export async function checkCurrentSession() {
@@ -42,5 +42,5 @@ export async function checkCurrentSession() {
         }
     }
 
-    return true;
+    return response.data;
 }

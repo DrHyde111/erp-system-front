@@ -8,7 +8,7 @@ import {useAppContext} from "../services/context.services";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {isAuthenticated, setUserHasAuthenticated} = useAppContext();
+    const {isAuthenticated, setUserHasAuthenticated, setUser} = useAppContext();
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -17,10 +17,14 @@ export default function Login() {
     // @ts-ignore
     async function handleSubmit(event) {
         event.preventDefault();
+        let response;
         try {
-            await signIn(email, password)
+            response = await signIn(email, password)
             if (setUserHasAuthenticated) {
                 setUserHasAuthenticated(true);
+                if (setUser) {
+                    setUser(response.data.employeeInfo);
+                }
             }
         } catch (e) {
             alert(e)

@@ -9,6 +9,7 @@ import PrivateHeader from './components/PrivateHeader';
 
 function App() {
     const [isAuthenticated, setUserHasAuthenticated] = useState(false);
+    const [user, setUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -18,7 +19,8 @@ function App() {
 
     async function onLoad() {
         try {
-            await checkCurrentSession();
+            const response = await checkCurrentSession();
+            setUser(response.employeeInfo);
             setUserHasAuthenticated(true);
         } catch (e) {
             setUserHasAuthenticated(false)
@@ -32,14 +34,14 @@ function App() {
 
                     {!isAuthenticated ? (
                         <>
-                            <AppContext.Provider value={{isAuthenticated, setUserHasAuthenticated}}>
+                            <AppContext.Provider value={{isAuthenticated, setUserHasAuthenticated, user, setUser}}>
                                 <PublicHeader/>
                                 <PublicSwitch/>
                             </AppContext.Provider>
                         </>
                     ) : (
                         <>
-                            <AppContext.Provider value={{isAuthenticated, setUserHasAuthenticated}}>
+                            <AppContext.Provider value={{isAuthenticated, setUserHasAuthenticated, user, setUser}}>
                                 <PrivateHeader/>
                                 <PrivateSwitch/>
                             </AppContext.Provider>
