@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {useAppContext} from "../services/context.services";
-import {attendanceControl, getLastUserAttendance} from "../services/api.services";
+import {useAppContext} from "../../services/context.services";
+import {attendanceControl, getLastUserAttendance} from "../../services/api.services";
 import {Button} from "react-bootstrap";
 
 export default function TimeRegister() {
