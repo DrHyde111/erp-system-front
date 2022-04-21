@@ -60,7 +60,7 @@ export async function getLastUserAttendance(id: number) {
     return response.data;
 }
 
-export async function attendanceControl(id: number){
+export async function attendanceControl(id: number) {
     let response
     try {
         response = await API.put(`/employee/${id}/attendance/`)
@@ -74,7 +74,7 @@ export async function attendanceControl(id: number){
     return response.data;
 }
 
-export async function getEmployeeAttendances(id: number){
+export async function getEmployeeAttendances(id: number) {
     let response
     try {
         response = await API.get(`/employee/${id}/attendance/`)
@@ -88,7 +88,7 @@ export async function getEmployeeAttendances(id: number){
     return response.data;
 }
 
-export async function getEmployees(){
+export async function getEmployees() {
     let response
     try {
         response = await API.get(`/employee`)
@@ -101,3 +101,18 @@ export async function getEmployees(){
     }
     return response.data;
 }
+
+export async function getEmployee(id: string | undefined) {
+    let response
+    try {
+        response = await API.get(`/employee/${id}`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
