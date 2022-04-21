@@ -15,6 +15,11 @@ export default function Dashboard() {
                             In/Out register
                         </a>
                     </div>
+                    <div className={"col-12 col-md-6"}>
+                        <a className={"card"} href={"/employees"}>
+                            Employees
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

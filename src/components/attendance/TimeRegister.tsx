@@ -72,7 +72,13 @@ export default function TimeRegister() {
                                 )
                             ) : null}
                         </div>
+                        <div className={"col-12 col-md-6"}>
+                            <a className={"card"} href={"/attendances"}>
+                                My attendances
+                            </a>
+                        </div>
                     </div>
+
 
                 ) : (
                     <></>

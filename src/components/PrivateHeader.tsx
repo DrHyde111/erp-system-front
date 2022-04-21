@@ -17,9 +17,11 @@ export default function PublicHeader() {
         <div className="App-header bg-light">
             <div className="App container">
                 <Navbar collapseOnSelect expand="md" className="mb-3">
-                    <Navbar.Brand className="font-weight-bold text-muted">
-                        ERP-System
-                    </Navbar.Brand>
+                    <a href={"/"}>
+                        <Navbar.Brand className="font-weight-bold text-muted">
+                            ERP-System
+                        </Navbar.Brand>
+                    </a>
                     <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
                 </Navbar>
             </div>
