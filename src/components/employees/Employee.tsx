@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useAppContext} from "../../services/context.services";
 import {
-    attendanceControl, getEmployee,
-    getEmployeeAttendances,
-    getEmployees,
-    getLastUserAttendance
+    deleteEmployee, getEmployee,
 } from "../../services/api.services";
-import {Button} from "react-bootstrap";
 import {useNavigate, useParams} from "react-router-dom";
 
 export default function Employee() {
@@ -20,7 +16,7 @@ export default function Employee() {
         City: undefined,
         BirthDate: undefined,
         EmployedDate: undefined,
-        Roles: [],
+        Role: undefined,
     });
     const [isLoading, setIsLoading] = useState(true)
     const {id} = useParams();
@@ -37,6 +33,11 @@ export default function Employee() {
         setIsLoading(false)
     }, [])
 
+
+    async function handleDelete() {
+        let response = await deleteEmployee(id)
+        return navigate("../employees")
+    }
 
     return (
         <div className={"TimeRegister"}>
@@ -89,7 +90,7 @@ export default function Employee() {
                                 </table>
 
                                 <h2>Account info</h2>
-                                <table className="table table-striped">
+                                <table className="table table-striped mb-5">
                                     <thead>
                                     <tr>
                                         <th scope="col">Roles</th>
@@ -97,10 +98,16 @@ export default function Employee() {
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th scope="row">{employee.Roles.toString()}</th>
+                                        <th scope="row">{employee.Role}</th>
                                     </tr>
                                     </tbody>
                                 </table>
+
+                                <h2>Actions</h2>
+                                <button onClick={() => navigate('edit')} className={"btn btn-primary mr-3"}>Edytuj
+                                </button>
+                                <button onClick={handleDelete} className={"btn btn-danger mr-3"}>Usuń
+                                </button>
                             </>
                         ) : (
                             <p>You dont have attendances</p>

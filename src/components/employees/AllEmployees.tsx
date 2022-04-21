@@ -18,15 +18,12 @@ export default function AllEmployees() {
     useEffect(() => {
         async function onLoad() {
             let response = await getEmployees();
-            console.log(response);
             setEmployees(response);
         }
 
         const result = onLoad();
         setIsLoading(false)
     }, [])
-
-
     return (
         <div className={"TimeRegister"}>
             <div className={"container"}>
@@ -44,16 +41,22 @@ export default function AllEmployees() {
                                 <th scope="col">Email</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Surname</th>
+                                <th scope="col">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {employees.length > 0 ? (
+                            {employees.length != 0 ? (
                                 employees.map(({id, Email, Name, Surname}) => (
-                                    <tr onClick={() => navigate(`${id}`)}>
+                                    <tr>
                                         <th scope="row">{id}</th>
                                         <th>{Email}</th>
                                         <th>{Name}</th>
                                         <th>{Surname}</th>
+                                        <th>
+                                            <button className={"btn btn-primary"} onClick={() => navigate(`${id}`)}>
+                                                Więcej
+                                            </button>
+                                        </th>
                                     </tr>
                                 ))
                             ) : (

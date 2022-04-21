@@ -116,3 +116,31 @@ export async function getEmployee(id: string | undefined) {
     return response.data;
 }
 
+export async function deleteEmployee(id: string | undefined) {
+    let response
+    try {
+        response = await API.delete(`/employee/${id}`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
+export async function editEmployee(id: string | undefined, employee: Object) {
+    let response
+    try {
+        response = await API.post(`/employee/${id}`, employee)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
