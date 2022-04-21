@@ -5,6 +5,7 @@ import NotFound from "./components/NotFound";
 import Dashboard from "./components/Dashboard";
 import TimeRegister from "./components/attendance/TimeRegister";
 import AllEmployeeAttendnace from "./components/attendance/AllEmployeeAttendnace";
+import AllEmployees from "./components/employees/AllEmployees";
 
 export default function PrivateSwitch() {
     return (
@@ -13,6 +14,7 @@ export default function PrivateSwitch() {
             <Route path="/" element={<Dashboard/>}/>
             <Route path="/time-register" element={<TimeRegister/>}/>
             <Route path="/attendances" element={<AllEmployeeAttendnace/>}/>
+            <Route path="/employees" element={<AllEmployees/>}/>
         </Routes>
     );
 }

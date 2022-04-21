@@ -87,3 +87,17 @@ export async function getEmployeeAttendances(id: number){
     }
     return response.data;
 }
+
+export async function getEmployees(){
+    let response
+    try {
+        response = await API.get(`/employee`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
