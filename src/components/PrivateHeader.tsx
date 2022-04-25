@@ -3,7 +3,7 @@ import "../styles/NotFound.css";
 import {Nav, Navbar, NavbarBrand} from "react-bootstrap";
 import {useAppContext} from "../services/context.services";
 
-export default function PublicHeader() {
+export default function PrivateHeader() {
     const {isAuthenticated, setUserHasAuthenticated} = useAppContext();
 
     function handleLogout() {
