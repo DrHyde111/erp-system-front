@@ -28,8 +28,11 @@ export default function AllEmployees() {
         <div className={"TimeRegister"}>
             <div className={"container"}>
                 <div className={"row"}>
-                    <div className={"col"}>
+                    <div className={"col-12 col-md-8"}>
                         <h1>Your attendances</h1>
+                    </div>
+                    <div className={"col-12 col-md-4"}>
+                        <button onClick={() => navigate("create")} className={"btn btn-primary"}>New employee</button>
                     </div>
                 </div>
                 {!isLoading ? (

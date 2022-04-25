@@ -143,4 +143,19 @@ export async function editEmployee(id: string | undefined, employee: Object) {
     }
     return response.data;
 }
+export async function createEmployee(employee: Object) {
+    let response
+    console.log(employee)
+    try {
+        response = await API.post("/employee/create", employee)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
 
