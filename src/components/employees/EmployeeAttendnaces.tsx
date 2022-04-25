@@ -55,7 +55,12 @@ export default function EmployeeAttendances() {
                                     <td>{TimeIn}</td>
                                     <td>{TimeOut}</td>
                                     <td>
-                                        <button onClick={() => navigate(`${id}/remarks`)}
+                                        <button onClick={() => navigate(`${id}/remarks`, {
+                                            state: {
+                                                employee: employee,
+                                                attendance: {id: id, TimeIn: TimeIn, TimeOut: TimeOut}
+                                            }
+                                        })}
                                                 className={"btn btn-primary"}>Remarks
                                         </button>
                                     </td>

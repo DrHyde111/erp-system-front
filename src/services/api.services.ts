@@ -116,6 +116,21 @@ export async function getEmployee(id: string | undefined) {
     return response.data;
 }
 
+export async function getRemark(id: string | undefined, attendanceId: string | undefined) {
+    let response
+    try {
+        response = await API.get(`/employee/${id}/attendance/${attendanceId}/remarks`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
+
 export async function deleteEmployee(id: string | undefined) {
     let response
     try {
@@ -143,6 +158,7 @@ export async function editEmployee(id: string | undefined, employee: Object) {
     }
     return response.data;
 }
+
 export async function createEmployee(employee: Object) {
     let response
     console.log(employee)
