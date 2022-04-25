@@ -130,6 +130,20 @@ export async function getRemark(id: string | undefined, attendanceId: string | u
     return response.data;
 }
 
+export async function createRemark(id: string | undefined, attendanceId: string | undefined, remark: Object) {
+    let response
+    try {
+        response = await API.post(`/employee/${id}/attendance/${attendanceId}/remarks`, remark)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
 
 export async function deleteEmployee(id: string | undefined) {
     let response
