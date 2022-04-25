@@ -9,6 +9,7 @@ import AllEmployees from "./components/employees/AllEmployees";
 import Employee from "./components/employees/Employee";
 import EditEmployee from "./components/employees/EditEmployee";
 import CreateEmployee from "./components/employees/CreateEmployee";
+import EmployeeAttendances from "./components/employees/EmployeeAttendnaces";
 
 export default function PrivateSwitch() {
     return (
@@ -18,6 +19,7 @@ export default function PrivateSwitch() {
             <Route path="/time-register" element={<TimeRegister/>}/>
             <Route path="/attendances" element={<AllEmployeeAttendnace/>}/>
             <Route path="/employees/:id/edit" element={<EditEmployee/>}/>
+            <Route path="/employees/:id/attendance" element={<EmployeeAttendances/>}/>
             <Route path="/employees/:id" element={<Employee/>}/>
             <Route path="/employees/create" element={<CreateEmployee/>}/>
             <Route path="/employees" element={<AllEmployees/>}/>

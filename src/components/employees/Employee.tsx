@@ -106,6 +106,9 @@ export default function Employee() {
                                 <h2>Actions</h2>
                                 <button onClick={() => navigate('edit')} className={"btn btn-primary mr-3"}>Edytuj
                                 </button>
+                                <button onClick={() => navigate('attendance', {state: {employee: employee}})}
+                                        className={"btn btn-primary mr-3"}>Show attendances
+                                </button>
                                 <button onClick={handleDelete} className={"btn btn-danger mr-3"}>Usuń
                                 </button>
                             </>
