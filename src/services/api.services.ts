@@ -243,5 +243,19 @@ export async function getWarehouseOverseers(id: string | undefined) {
     return response.data;
 }
 
+export async function unasignWarehouseOverseer(id: string | undefined, overseerId: string | undefined) {
+    let response
+    try {
+        response = await API.delete(`/warehouse/${id}/overseers/${overseerId}`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
 
 
