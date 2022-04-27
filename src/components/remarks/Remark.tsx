@@ -4,6 +4,7 @@ import {
     deleteEmployee, getEmployee, getRemarks, getSpecificRemark,
 } from "../../services/api.services";
 import {useNavigate, useParams} from "react-router-dom";
+import Loading from "../Loading";
 
 export default function Remark() {
     const context = useAppContext();
@@ -33,11 +34,10 @@ export default function Remark() {
     }, [])
 
     return (
-        <div className={"TimeRegister"}>
+        <div className={"Remark"}>
             <div className={"container"}>
                 {!isLoading ? (
                     <>
-
                         {remark.id != undefined ? (
                             <>
                                 <div className={"row"}>
@@ -46,7 +46,7 @@ export default function Remark() {
                                             <div className={"card-body"}>
                                                 <h1 className={"mb-3"}>Tytuł: {remark.Title}</h1>
                                                 <p>Zawartość:</p>
-                                                <p style={{whiteSpace:"pre-line"}}>{remark.Content}</p>
+                                                <p style={{whiteSpace: "pre-line"}}>{remark.Content}</p>
                                             </div>
                                             <div className={"card-footer"}>
                                                 <p>Data utworzenia: {remark.CreationDate}</p>
@@ -61,7 +61,7 @@ export default function Remark() {
                         )}
                     </>
                 ) : (
-                    <></>
+                    <Loading/>
                 )}
             </div>
         </div>

@@ -6,6 +6,7 @@ import {checkCurrentSession} from "./services/api.services";
 import PrivateSwitch from "./PrivateSwitch";
 import PublicHeader from "./components/PublicHeader";
 import PrivateHeader from './components/PrivateHeader';
+import Loading from "./components/Loading";
 
 function App() {
     const [isAuthenticated, setUserHasAuthenticated] = useState(false);
@@ -24,6 +25,7 @@ function App() {
             }
             setIsLoading(false)
         }
+
         const result = onLoad()
     }, [])
 
@@ -48,9 +50,7 @@ function App() {
                     )}
                 </>
             ) : (
-                <div>
-                    <h1>Loading</h1>
-                </div>
+                <Loading/>
             )}
         </>
     );

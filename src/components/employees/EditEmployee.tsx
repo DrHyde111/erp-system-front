@@ -8,6 +8,7 @@ import {
 } from "../../services/api.services";
 import {Button} from "react-bootstrap";
 import {useNavigate, useParams} from "react-router-dom";
+import Loading from "../Loading";
 
 export default function EditEmployee() {
     const context = useAppContext();
@@ -46,7 +47,7 @@ export default function EditEmployee() {
     }
 
     return (
-        <div className={"TimeRegister"}>
+        <div className={"EditEmployee"}>
             <div className={"container"}>
 
                 {!isLoading ? (
@@ -106,7 +107,7 @@ export default function EditEmployee() {
                         )}
                     </>
                 ) : (
-                    <></>
+                    <Loading/>
                 )}
             </div>
         </div>

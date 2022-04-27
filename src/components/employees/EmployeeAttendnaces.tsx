@@ -3,6 +3,7 @@ import {useAppContext} from "../../services/context.services";
 import {attendanceControl, getEmployeeAttendances, getLastUserAttendance} from "../../services/api.services";
 import {Button} from "react-bootstrap";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
+import Loading from "../Loading";
 
 export default function EmployeeAttendances() {
     const {id} = useParams();
@@ -30,7 +31,7 @@ export default function EmployeeAttendances() {
 
 
     return (
-        <div className={"TimeRegister"}>
+        <div className={"EmployeeAttendances"}>
             <div className={"container"}>
                 <div className={"row"}>
                     <div className={"col"}>
@@ -72,7 +73,7 @@ export default function EmployeeAttendances() {
                         </tbody>
                     </table>
                 ) : (
-                    <></>
+                    <Loading/>
                 )}
             </div>
         </div>

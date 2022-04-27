@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useAppContext} from "../../services/context.services";
 import {attendanceControl, getEmployeeAttendances, getLastUserAttendance} from "../../services/api.services";
 import {Button} from "react-bootstrap";
+import Loading from "../Loading";
 
 export default function AllEmployeeAttendnace() {
     const context = useAppContext();
@@ -21,7 +22,7 @@ export default function AllEmployeeAttendnace() {
 
 
     return (
-        <div className={"TimeRegister"}>
+        <div className={"AllEmployeesAttendance"}>
             <div className={"container"}>
                 <div className={"row"}>
                     <div className={"col"}>
@@ -52,7 +53,7 @@ export default function AllEmployeeAttendnace() {
                         </tbody>
                     </table>
                 ) : (
-                    <></>
+                    <Loading/>
                 )}
             </div>
         </div>

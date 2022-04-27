@@ -8,6 +8,7 @@ import {
 } from "../../services/api.services";
 import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
+import Loading from "../Loading";
 
 export default function AllEmployees() {
     const context = useAppContext();
@@ -25,7 +26,7 @@ export default function AllEmployees() {
         setIsLoading(false)
     }, [])
     return (
-        <div className={"TimeRegister"}>
+        <div className={"AllEmployees"}>
             <div className={"container"}>
                 <div className={"row"}>
                     <div className={"col-12 col-md-8"}>
@@ -69,7 +70,7 @@ export default function AllEmployees() {
                         </table>
                     </div>
                 ) : (
-                    <></>
+                    <Loading/>
                 )}
             </div>
         </div>

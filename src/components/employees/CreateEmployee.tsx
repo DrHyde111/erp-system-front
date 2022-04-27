@@ -4,6 +4,7 @@ import {
     createEmployee,
 } from "../../services/api.services";
 import {useNavigate, useParams} from "react-router-dom";
+import Loading from "../Loading";
 
 export default function CreateEmployee() {
     const context = useAppContext();
@@ -40,7 +41,7 @@ export default function CreateEmployee() {
     }
 
     return (
-        <div className={"TimeRegister"}>
+        <div className={"CreateEmployee"}>
             <div className={"container"}>
 
                 {!isLoading ? (
@@ -116,7 +117,7 @@ export default function CreateEmployee() {
                     </>
 
                 ) : (
-                    <></>
+                    <Loading/>
                 )}
             </div>
         </div>

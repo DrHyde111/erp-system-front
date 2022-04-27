@@ -4,6 +4,7 @@ import {
     deleteEmployee, getEmployee, getRemarks,
 } from "../../services/api.services";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
+import Loading from "../Loading";
 
 export default function SpecificAttendanceRemarks() {
     const context = useAppContext();
@@ -26,19 +27,12 @@ export default function SpecificAttendanceRemarks() {
         setIsLoading(false)
     }, [])
 
-
-    async function handleDelete() {
-        let response = await deleteEmployee(id)
-        return navigate("../employees")
-    }
-
     return (
-        <div className={"TimeRegister"}>
+        <div className={"SpecificAttendanceRemarks"}>
             <div className={"container"}>
 
                 {!isLoading ? (
                     <>
-
                         {remarks.length > 0 ? (
                             <>
                                 <div className={"row"}>
@@ -60,12 +54,13 @@ export default function SpecificAttendanceRemarks() {
                                     </thead>
                                     <tbody>
                                     {remarks.length != 0 ? (
-                                        remarks.map(({id,Title, CreationDate}) => (
+                                        remarks.map(({id, Title, CreationDate}) => (
                                             <tr>
                                                 <th scope="row">{Title}</th>
                                                 <th>{CreationDate}</th>
                                                 <th>
-                                                    <button className={"btn btn-primary"} onClick={() => navigate(`${id}`)}>
+                                                    <button className={"btn btn-primary"}
+                                                            onClick={() => navigate(`${id}`)}>
                                                         Więcej
                                                     </button>
                                                 </th>
@@ -84,7 +79,7 @@ export default function SpecificAttendanceRemarks() {
                         )}
                     </>
                 ) : (
-                    <></>
+                    <Loading/>
                 )}
             </div>
         </div>

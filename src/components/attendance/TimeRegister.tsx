@@ -3,6 +3,7 @@ import {useAppContext} from "../../services/context.services";
 import {attendanceControl, createEmployee, createRemark, getLastUserAttendance} from "../../services/api.services";
 import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
+import Loading from "../Loading";
 
 export default function TimeRegister() {
     const context = useAppContext();
@@ -127,10 +128,8 @@ export default function TimeRegister() {
                             ) : null}
                         </div>
                     </div>
-
-
                 ) : (
-                    <></>
+                    <Loading/>
                 )}
             </div>
         </div>

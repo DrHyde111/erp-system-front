@@ -4,6 +4,7 @@ import {
     deleteEmployee, getEmployee,
 } from "../../services/api.services";
 import {useNavigate, useParams} from "react-router-dom";
+import Loading from "../Loading";
 
 export default function Employee() {
     const context = useAppContext();
@@ -40,12 +41,11 @@ export default function Employee() {
     }
 
     return (
-        <div className={"TimeRegister"}>
+        <div className={"Employee"}>
             <div className={"container"}>
 
                 {!isLoading ? (
                     <>
-
                         {employee.id != undefined ? (
                             <>
                                 <div className={"row"}>
@@ -117,7 +117,7 @@ export default function Employee() {
                         )}
                     </>
                 ) : (
-                    <></>
+                    <Loading/>
                 )}
             </div>
         </div>
