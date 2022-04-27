@@ -45,19 +45,17 @@ export default function AllWarehouses() {
                                 <th scope="col">Name</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">City</th>
-                                <th scope="col">Description</th>
                                 <th scope="col">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             {warehouses.length != 0 ? (
-                                warehouses.map(({id, Name, Address, City, Description}) => (
+                                warehouses.map(({id, Name, Address, City}) => (
                                     <tr>
                                         <th scope="row">{id}</th>
                                         <th>{Name}</th>
                                         <th>{Address}</th>
                                         <th>{City}</th>
-                                        <th>{Description}</th>
                                         <th>
                                             <button className={"btn btn-primary"} onClick={() => navigate(`${id}`)}>
                                                 Więcej
