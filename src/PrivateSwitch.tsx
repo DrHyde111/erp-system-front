@@ -16,6 +16,7 @@ import AllWarehouses from "./components/warehouses/AllWarehouses";
 import Warehouse from "./components/warehouses/Warehouse";
 import WarehouseOverseers from "./components/warehouses/WarehouseOverseers";
 import AssignOverseer from "./components/warehouses/AssignOverseer";
+import CreateWarehouse from "./components/warehouses/CreateWarehouse";
 
 export default function PrivateSwitch() {
     return (
@@ -31,9 +32,10 @@ export default function PrivateSwitch() {
             <Route path="/employees/:id" element={<Employee/>}/>
             <Route path="/employees/create" element={<CreateEmployee/>}/>
             <Route path="/employees" element={<AllEmployees/>}/>
-                <Route path="/warehouses/:id/overseers/assign" element={<AssignOverseer/>}/>
-                <Route path="/warehouses/:id/overseers" element={<WarehouseOverseers/>}/>
+            <Route path="/warehouses/:id/overseers/assign" element={<AssignOverseer/>}/>
+            <Route path="/warehouses/:id/overseers" element={<WarehouseOverseers/>}/>
             <Route path="/warehouses/:id" element={<Warehouse/>}/>
+            <Route path="/warehouses/create" element={<CreateWarehouse/>}/>
             <Route path="/warehouses" element={<AllWarehouses/>}/>
         </Routes>
     );
