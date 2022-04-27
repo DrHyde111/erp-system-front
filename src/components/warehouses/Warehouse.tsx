@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useAppContext} from "../../services/context.services";
 import {
-    deleteEmployee, getEmployee, getRemarks, getSpecificRemark, getWarehouse,
+    attendanceControl,
+    deleteEmployee, deleteWarehouse, getEmployee, getRemarks, getSpecificRemark, getWarehouse,
 } from "../../services/api.services";
 import {useNavigate, useParams} from "react-router-dom";
 import Loading from "../Loading";
@@ -16,6 +17,8 @@ export default function Warehouse() {
         Description: undefined,
     });
     const [isLoading, setIsLoading] = useState(true)
+    const [message, setMessage] = useState({status: -1, message: ""})
+
     const {id} = useParams();
     let navigate = useNavigate();
 
@@ -28,6 +31,20 @@ export default function Warehouse() {
         const result = onLoad();
         setIsLoading(false)
     }, [])
+
+    async function handleDelete() {
+        let answer = window.confirm("Are you sure you want to delete?")
+        if (answer) {
+            try {
+                let response = await deleteWarehouse(id);
+                navigate("../warehouses")
+
+            } catch (error) {
+                if (typeof error == "string")
+                    setMessage({status: 1, message: error});
+            }
+        }
+    }
 
     return (
         <div className={"Warehouse"}>
@@ -56,9 +73,13 @@ export default function Warehouse() {
                                         <button className={"btn btn-primary mr-3"}
                                                 onClick={() => navigate("overseers")}>Overseers
                                         </button>
-                                        <button className={"btn btn-primary"}
+                                        <button className={"btn btn-primary mr-3"}
                                                 onClick={() => navigate("products")}>Products
                                         </button>
+                                        <button className={"btn btn-danger"}
+                                                onClick={() => handleDelete()}>Delete warehouse
+                                        </button>
+
                                     </div>
                                 </div>
                             </>
