@@ -79,7 +79,7 @@ export default function TimeRegister() {
                                 </div>
                                 <div className={"col-12"}>
                                     <Button onClick={checkInOut}>
-                                        {lastAttendance.TimeOut != null ? ("Enter Work") : ("Leave Work")}
+                                        {lastAttendance.TimeOut != null || lastAttendance.TimeIn == null ? ("Enter Work") : ("Leave Work")}
                                     </Button>
                                     <button className={"btn btn-primary ml-5"} onClick={() => navigate("/attendances")}>
                                         My attendances
