@@ -70,7 +70,7 @@ export default function WarehouseProducts() {
                                         <th>{Unit}</th>
                                         <th>{PricePerUnit} zł</th>
                                         <th>
-                                            <button className={"btn btn-primary"} onClick={() => handleRemove(id)}>
+                                            <button className={"btn btn-primary"} onClick={() => navigate(`${id}`)}>
                                                 More
                                             </button>
                                         </th>

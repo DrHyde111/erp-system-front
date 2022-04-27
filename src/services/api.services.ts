@@ -313,10 +313,24 @@ export async function getWarehouseProducts(id: string | undefined) {
     return response.data;
 }
 
-export async function addProduct(id: string|undefined, product: Object) {
+export async function addProduct(id: string | undefined, product: Object) {
     let response
     try {
         response = await API.post(`/warehouse/${id}/products/add`, product)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
+export async function getProduct(id: string | undefined, productId: string | undefined) {
+    let response
+    try {
+        response = await API.get(`/warehouse/${id}/products/${productId}`)
     } catch (error) {
         if (axios.isAxiosError(error) && error.response != undefined) {
             throw error.response.data.message
