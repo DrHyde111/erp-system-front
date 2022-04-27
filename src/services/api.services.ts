@@ -229,5 +229,19 @@ export async function getWarehouse(id: string | undefined) {
     return response.data;
 }
 
+export async function getWarehouseOverseers(id: string | undefined) {
+    let response
+    try {
+        response = await API.get(`/warehouse/${id}/overseers`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
 
 

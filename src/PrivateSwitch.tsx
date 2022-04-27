@@ -14,6 +14,7 @@ import SpecificAttendanceRemarks from "./components/remarks/SpecificAttendanceRe
 import Remark from "./components/remarks/Remark";
 import AllWarehouses from "./components/warehouses/AllWarehouses";
 import Warehouse from "./components/warehouses/Warehouse";
+import WarehouseOverseers from "./components/warehouses/WarehouseOverseers";
 
 export default function PrivateSwitch() {
     return (
@@ -29,7 +30,8 @@ export default function PrivateSwitch() {
             <Route path="/employees/:id" element={<Employee/>}/>
             <Route path="/employees/create" element={<CreateEmployee/>}/>
             <Route path="/employees" element={<AllEmployees/>}/>
-            <Route path="/warehouses/:id" element={<Warehouse/>}/>
+                <Route path="/warehouses/:id/overseers" element={<WarehouseOverseers/>}/>
+                <Route path="/warehouses/:id" element={<Warehouse/>}/>
             <Route path="/warehouses" element={<AllWarehouses/>}/>
         </Routes>
     );
