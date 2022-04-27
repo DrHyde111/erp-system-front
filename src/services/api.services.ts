@@ -257,5 +257,20 @@ export async function unasignWarehouseOverseer(id: string | undefined, overseerI
     return response.data;
 }
 
+export async function asignWarehouseOverseer(id: string | undefined, overseerId: string | undefined) {
+    let response
+    try {
+        response = await API.post(`/warehouse/${id}/overseers/${overseerId}/assign`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
+
 
 

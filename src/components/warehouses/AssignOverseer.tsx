@@ -1,32 +1,51 @@
 import React, {useEffect, useState} from "react";
 import {useAppContext} from "../../services/context.services";
-import {getWarehouseOverseers, unasignWarehouseOverseer} from "../../services/api.services";
-import {useNavigate, useParams} from "react-router-dom";
+import {
+    asignWarehouseOverseer,
+    getEmployees,
+    getWarehouseOverseers,
+    unasignWarehouseOverseer
+} from "../../services/api.services";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import Loading from "../Loading";
 
-export default function WarehouseOverseers() {
+export default function AssignOverseer() {
     const context = useAppContext();
-    const [overseers, setOverseers] = useState([]);
+    const [employees, setEmployees] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
     const [message, setMessage] = useState({status: -1, message: ""})
     let navigate = useNavigate();
     const {id} = useParams()
+    const {state} = useLocation()
+    // @ts-ignore
+    const {overseers} = state
 
     useEffect(() => {
         async function onLoad() {
-            let response = await getWarehouseOverseers(id);
-            setOverseers(response);
+            let response = await getEmployees();
+
+            // @ts-ignore
+            let ids = overseers.map((item) => {
+                return item.id
+            })
+            console.log(ids)
+            // @ts-ignore
+            let filteredEmployees = response.filter(item => {
+                return !ids.includes(item.id)
+            })
+
+            setEmployees(filteredEmployees);
         }
 
         const result = onLoad();
         setIsLoading(false)
     }, [])
 
-    async function handleRemove(overseerId: string) {
+    async function handleAssign(overseerId: string) {
         try {
-            let response = await unasignWarehouseOverseer(id, overseerId)
+            let response = await asignWarehouseOverseer(id, overseerId)
             setMessage({status: 0, message: response.message});
-            setOverseers(overseers.filter(item => {
+            setEmployees(employees.filter(item => {
                 const {id: id1} = item;
                 return id1 !== overseerId;
             }))
@@ -42,12 +61,7 @@ export default function WarehouseOverseers() {
             <div className={"container"}>
                 <div className={"row"}>
                     <div className={"col-12 col-md-8"}>
-                        <h1>Warehouse overseers</h1>
-                    </div>
-                    <div className={"col-12 col-md-4"}>
-                        <button onClick={() => navigate("assign", {state: {overseers: overseers}})}
-                                className={"btn btn-primary"}>Add overseer
-                        </button>
+                        <h1>Assign employees to overseers</h1>
                     </div>
                 </div>
                 {!isLoading ? (
@@ -63,22 +77,22 @@ export default function WarehouseOverseers() {
                             </tr>
                             </thead>
                             <tbody>
-                            {overseers.length != 0 ? (
-                                overseers.map(({id, Name, Surname, Email}) => (
+                            {employees.length != 0 ? (
+                                employees.map(({id, Name, Surname, Email}) => (
                                     <tr>
                                         <th scope="row">{id}</th>
                                         <th>{Name}</th>
                                         <th>{Surname}</th>
                                         <th>{Email}</th>
                                         <th>
-                                            <button className={"btn btn-danger"} onClick={() => handleRemove(id)}>
-                                                Remove
+                                            <button className={"btn btn-success"} onClick={() => handleAssign(id)}>
+                                                Assign
                                             </button>
                                         </th>
                                     </tr>
                                 ))
                             ) : (
-                                <p>Warehouse don't have assigned overseers</p>
+                                <p>There are no more employees available to assign.</p>
                             )}
                             </tbody>
                         </table>
