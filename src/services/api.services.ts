@@ -229,6 +229,20 @@ export async function getWarehouse(id: string | undefined) {
     return response.data;
 }
 
+export async function createWarehouse(warehouse: Object) {
+    let response
+    try {
+        response = await API.post(`/warehouse/create`, warehouse)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
 export async function deleteWarehouse(id: string | undefined) {
     let response
     try {
@@ -242,7 +256,6 @@ export async function deleteWarehouse(id: string | undefined) {
     }
     return response.data;
 }
-
 
 export async function getWarehouseOverseers(id: string | undefined) {
     let response
@@ -286,10 +299,10 @@ export async function asignWarehouseOverseer(id: string | undefined, overseerId:
     return response.data;
 }
 
-export async function createWarehouse(warehouse: Object) {
+export async function getWarehouseProducts(id: string | undefined) {
     let response
     try {
-        response = await API.post(`/warehouse/create`, warehouse)
+        response = await API.get(`/warehouse/${id}/products`)
     } catch (error) {
         if (axios.isAxiosError(error) && error.response != undefined) {
             throw error.response.data.message
@@ -299,6 +312,7 @@ export async function createWarehouse(warehouse: Object) {
     }
     return response.data;
 }
+
 
 
 
