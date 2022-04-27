@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useAppContext} from "../../services/context.services";
 import {
-    deleteEmployee, getEmployee, getRemark,
+    deleteEmployee, getEmployee, getRemarks,
 } from "../../services/api.services";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
@@ -18,10 +18,7 @@ export default function SpecificAttendanceRemarks() {
 
     useEffect(() => {
         async function onLoad() {
-            let response = await getRemark(id, attendanceId);
-            console.log(response);
-            console.log(employee);
-
+            let response = await getRemarks(id, attendanceId);
             setRemarks(response);
         }
 

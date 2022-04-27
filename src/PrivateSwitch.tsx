@@ -10,7 +10,8 @@ import Employee from "./components/employees/Employee";
 import EditEmployee from "./components/employees/EditEmployee";
 import CreateEmployee from "./components/employees/CreateEmployee";
 import EmployeeAttendances from "./components/employees/EmployeeAttendnaces";
-import Remark from "./components/remarks/SpecificAttendanceRemarks";
+import SpecificAttendanceRemarks from "./components/remarks/SpecificAttendanceRemarks";
+import Remark from "./components/remarks/Remark";
 
 export default function PrivateSwitch() {
     return (
@@ -21,8 +22,8 @@ export default function PrivateSwitch() {
             <Route path="/attendances" element={<AllEmployeeAttendnace/>}/>
             <Route path="/employees/:id/edit" element={<EditEmployee/>}/>
             <Route path="/employees/:id/attendance" element={<EmployeeAttendances/>}/>
-            <Route path="/employees/:id/attendance/:attendanceId/remarks" element={<Remark/>}/>
-
+            <Route path="/employees/:id/attendance/:attendanceId/remarks" element={<SpecificAttendanceRemarks/>}/>
+            <Route path="/employees/:id/attendance/:attendanceId/remarks/:remarkId" element={<Remark/>}/>
             <Route path="/employees/:id" element={<Employee/>}/>
             <Route path="/employees/create" element={<CreateEmployee/>}/>
             <Route path="/employees" element={<AllEmployees/>}/>

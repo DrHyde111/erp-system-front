@@ -116,10 +116,24 @@ export async function getEmployee(id: string | undefined) {
     return response.data;
 }
 
-export async function getRemark(id: string | undefined, attendanceId: string | undefined) {
+export async function getRemarks(id: string | undefined, attendanceId: string | undefined) {
     let response
     try {
         response = await API.get(`/employee/${id}/attendance/${attendanceId}/remarks`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
+export async function getSpecificRemark(id: string | undefined, attendanceId: string | undefined, remarkId: string | undefined) {
+    let response
+    try {
+        response = await API.get(`/employee/${id}/attendance/${attendanceId}/remarks/${remarkId}`)
     } catch (error) {
         if (axios.isAxiosError(error) && error.response != undefined) {
             throw error.response.data.message
@@ -143,7 +157,6 @@ export async function createRemark(id: string | undefined, attendanceId: string 
     }
     return response.data;
 }
-
 
 export async function deleteEmployee(id: string | undefined) {
     let response
