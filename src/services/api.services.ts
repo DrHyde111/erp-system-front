@@ -201,4 +201,19 @@ export async function createEmployee(employee: Object) {
     return response.data;
 }
 
+export async function getWarehouses() {
+    let response
+    try {
+        response = await API.get(`/warehouse`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
+
 
