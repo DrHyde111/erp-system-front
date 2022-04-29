@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useAppContext} from "../../services/context.services";
 import {
-    deleteEmployee,
+    deleteEmployee, editProduct,
     getProduct,
     getWarehouseOverseers,
     getWarehouseProducts, removeProduct,
@@ -37,6 +37,23 @@ export default function Product() {
     async function handleRemove() {
         let response = await removeProduct(id, productId)
         return navigate(`../warehouses/${id}/products`)
+    }
+
+    async function handleChangeQuantity() {
+        setMessage({status: -1, message: ""})
+        let demandedQuantity = Number(window.prompt("Type current quantity", ""));
+
+        // @ts-ignore
+        if (isNaN(demandedQuantity)) {
+            setMessage({status: 1, message: "Not a number"})
+        }
+        demandedQuantity = Number(demandedQuantity)
+        if (demandedQuantity > Number(product.Quantity)) {
+            setMessage({status: 1, message: "Demanded quantity larger then stock"})
+        }
+        setProduct({...product, Quantity: demandedQuantity.toString()})
+        let response = await editProduct(id, productId, {...product, Quantity: demandedQuantity.toString()})
+        setMessage(response)
     }
 
     return (
@@ -88,10 +105,15 @@ export default function Product() {
                                         <strong className={"m-0"}>Possible actions</strong>
                                     </div>
                                     <div className={"card-body"}>
-                                        <button className={"btn btn-danger"} onClick={() => handleRemove()}>Remove</button>
-                                    </div>
-                                    <div className={"card-body"}>
-                                        <button className={"btn btn-primary"} onClick={() => navigate("move")}>Move to other warehouse</button>
+                                        <button className={"btn btn-primary mr-3"}
+                                                onClick={() => handleChangeQuantity()}>
+                                            Change quantity
+                                        </button>
+                                        <button className={"btn btn-primary mr-3"} onClick={() => navigate("move")}>
+                                            Move to other warehouse
+                                        </button>
+                                        <button className={"btn btn-danger mr-3"} onClick={() => handleRemove()}>Remove
+                                        </button>
                                     </div>
                                 </div>
                             </div>

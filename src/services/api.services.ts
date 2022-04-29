@@ -369,6 +369,21 @@ export async function moveProduct(id: string | undefined, productId: string | un
     return response.data;
 }
 
+export async function editProduct(id: string | undefined, productId: string | undefined, product: Object) {
+    let response
+    try {
+        response = await API.post(`/warehouse/${id}/products/${productId}`, product)
+        console.log(response)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
 
 
 
