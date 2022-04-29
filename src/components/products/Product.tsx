@@ -39,6 +39,20 @@ export default function Product() {
         return navigate(`../warehouses/${id}/products`)
     }
 
+    async function handleChangePrice() {
+        setMessage({status: -1, message: ""})
+        let newPrice = Number(window.prompt("Type current quantity", ""));
+
+        // @ts-ignore
+        if (isNaN(newPrice)) {
+            setMessage({status: 1, message: "Not a number"})
+        }
+        newPrice = Number(newPrice)
+        setProduct({...product, PricePerUnit: newPrice.toString()})
+        let response = await editProduct(id, productId, {...product, PricePerUnit: newPrice.toString()})
+        setMessage(response)
+    }
+
     async function handleChangeQuantity() {
         setMessage({status: -1, message: ""})
         let demandedQuantity = Number(window.prompt("Type current quantity", ""));
@@ -108,6 +122,10 @@ export default function Product() {
                                         <button className={"btn btn-primary mr-3"}
                                                 onClick={() => handleChangeQuantity()}>
                                             Change quantity
+                                        </button>
+                                        <button className={"btn btn-primary mr-3"}
+                                                onClick={() => handleChangePrice()}>
+                                            Change price
                                         </button>
                                         <button className={"btn btn-primary mr-3"} onClick={() => navigate("move")}>
                                             Move to other warehouse
