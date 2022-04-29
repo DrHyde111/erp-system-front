@@ -103,7 +103,6 @@ export default function CreateEmployee() {
                                         onChange={(e) => setEmployee({...employee, Role: e.target.value})}
                                         className="form-select">
                                     <option value="Admin">Admin</option>
-                                    <option value="EmployeeMagasin">Magazynier</option>
                                     <option value="Employee">Pracownik</option>
                                 </select>
                             </div>

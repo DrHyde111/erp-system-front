@@ -70,15 +70,21 @@ export default function Warehouse() {
                                 </div>
                                 <div className={"row mb-3"}>
                                     <div className={"col-12"}>
-                                        <button className={"btn btn-primary mr-3"}
-                                                onClick={() => navigate("overseers")}>Overseers
-                                        </button>
+
                                         <button className={"btn btn-primary mr-3"}
                                                 onClick={() => navigate("products")}>Products
                                         </button>
-                                        <button className={"btn btn-danger"}
-                                                onClick={() => handleDelete()}>Delete warehouse
-                                        </button>
+                                        {context.user.Role === "Admin" ?
+                                            <>
+                                                <button className={"btn btn-primary mr-3"}
+                                                        onClick={() => navigate("overseers")}>Overseers
+                                                </button>
+                                                <button className={"btn btn-danger"}
+                                                        onClick={() => handleDelete()}>Delete warehouse
+                                                </button>
+                                            </>
+                                            : <></>
+                                        }
 
                                     </div>
                                 </div>

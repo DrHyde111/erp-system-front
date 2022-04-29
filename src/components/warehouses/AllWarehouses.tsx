@@ -38,9 +38,13 @@ export default function AllWarehouses() {
                     <div className={"col-12 col-md-8"}>
                         <h1>Warehouses</h1>
                     </div>
-                    <div className={"col-12 col-md-4"}>
-                        <button onClick={() => navigate("create")} className={"btn btn-primary"}>New warehouse</button>
-                    </div>
+                    {context.user.Role === "Admin" ?
+                        <div className={"col-12 col-md-4"}>
+                            <button onClick={() => navigate("create")} className={"btn btn-primary"}>New warehouse
+                            </button>
+                        </div>
+                        : <></>
+                    }
                 </div>
                 {!isLoading ? (
                     <div className={"table-responsive"}>
