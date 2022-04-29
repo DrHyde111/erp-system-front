@@ -3,11 +3,13 @@ import {useAppContext} from "../../services/context.services";
 import {attendanceControl, getEmployeeAttendances, getLastUserAttendance} from "../../services/api.services";
 import {Button} from "react-bootstrap";
 import Loading from "../Loading";
+import {useNavigate} from "react-router-dom";
 
 export default function AllEmployeeAttendnace() {
     const context = useAppContext();
     const [attendances, setAttendances] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function onLoad() {
@@ -36,15 +38,26 @@ export default function AllEmployeeAttendnace() {
                             <th scope="col">#</th>
                             <th scope="col">TimeIn</th>
                             <th scope="col">TimeOut</th>
+                            <th scope="col">Actions</th>
+
                         </tr>
                         </thead>
                         <tbody>
                         {attendances.length > 0 ? (
-                            attendances.map(({id, TimeIn, TimeOut}) => (
+                            attendances.map((attendance: any) => (
                                 <tr>
-                                    <th scope="row">{id}</th>
-                                    <td>{TimeIn}</td>
-                                    <td>{TimeOut}</td>
+                                    <th scope="row">{attendance.id}</th>
+                                    <td>{attendance.TimeIn}</td>
+                                    <td>{attendance.TimeOut}</td>
+                                    <td>
+                                        <button onClick={() => navigate(`${attendance.id}/remarks`, {
+                                            state: {
+                                                employee: context.user,
+                                                attendance
+                                            }
+                                        })} className={"btn btn-primary"}>Remarks
+                                        </button>
+                                    </td>
                                 </tr>
                             ))
                         ) : (

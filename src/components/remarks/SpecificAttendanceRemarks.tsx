@@ -53,29 +53,25 @@ export default function SpecificAttendanceRemarks() {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {remarks.length != 0 ? (
-                                        remarks.map(({id, Title, CreationDate}) => (
-                                            <tr>
-                                                <th scope="row">{Title}</th>
-                                                <th>{CreationDate}</th>
-                                                <th>
-                                                    <button className={"btn btn-primary"}
-                                                            onClick={() => navigate(`${id}`)}>
-                                                        Więcej
-                                                    </button>
-                                                </th>
-                                            </tr>
-                                        ))
-                                    ) : (
-                                        <p>You dont have attendances</p>
-                                    )}
+                                    {remarks.map(({id, Title, CreationDate}) => (
+                                        <tr>
+                                            <th scope="row">{Title}</th>
+                                            <th>{CreationDate}</th>
+                                            <th>
+                                                <button className={"btn btn-primary"}
+                                                        onClick={() => navigate(`${id}`)}>
+                                                    Więcej
+                                                </button>
+                                            </th>
+                                        </tr>
+                                    ))}
                                     </tbody>
                                 </table>
 
 
                             </>
                         ) : (
-                            <p>You dont have attendances</p>
+                            <p>Attendance dont have remarks</p>
                         )}
                     </>
                 ) : (

@@ -28,7 +28,9 @@ export default function PrivateSwitch() {
             <Route path="*" element={<NotFound/>}/>
             <Route path="/" element={<Dashboard/>}/>
             <Route path="/time-register" element={<TimeRegister/>}/>
-            <Route path="/attendances" element={<AllEmployeeAttendnace/>}/>
+            <Route path="/time-register/attendances" element={<AllEmployeeAttendnace/>}/>
+            <Route path="/time-register/attendances/:attendanceId/remarks" element={<SpecificAttendanceRemarks/>}/>
+            <Route path="/time-register/attendances/:attendanceId/remarks/:remarkId" element={<Remark/>}/>
             <Route path="/employees/:id/edit" element={<EditEmployee/>}/>
             <Route path="/employees/:id/attendance" element={<EmployeeAttendances/>}/>
             <Route path="/employees/:id/attendance/:attendanceId/remarks" element={<SpecificAttendanceRemarks/>}/>
@@ -38,8 +40,8 @@ export default function PrivateSwitch() {
             <Route path="/employees" element={<AllEmployees/>}/>
             <Route path="/warehouses/:id/overseers/assign" element={<AssignOverseer/>}/>
             <Route path="/warehouses/:id/overseers" element={<WarehouseOverseers/>}/>
-                <Route path="/warehouses/:id/products/:productId/move" element={<MoveProduct/>}/>
-                <Route path="/warehouses/:id/products/:productId" element={<Product/>}/>
+            <Route path="/warehouses/:id/products/:productId/move" element={<MoveProduct/>}/>
+            <Route path="/warehouses/:id/products/:productId" element={<Product/>}/>
             <Route path="/warehouses/:id/products/add" element={<AddProduct/>}/>
             <Route path="/warehouses/:id/products" element={<WarehouseProducts/>}/>
             <Route path="/warehouses/:id" element={<Warehouse/>}/>
