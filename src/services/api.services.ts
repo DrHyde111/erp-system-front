@@ -341,6 +341,34 @@ export async function getProduct(id: string | undefined, productId: string | und
     return response.data;
 }
 
+export async function removeProduct(id: string | undefined, productId: string | undefined) {
+    let response
+    try {
+        response = await API.delete(`/warehouse/${id}/products/${productId}`)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
+export async function moveProduct(id: string | undefined, productId: string | undefined, warehouseId: string | undefined, product: Object) {
+    let response
+    try {
+        response = await API.post(`/warehouse/${id}/products/${productId}/move/${warehouseId}`, product)
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response != undefined) {
+            throw error.response.data.message
+        } else {
+            throw "Something went wrong."
+        }
+    }
+    return response.data;
+}
+
 
 
 

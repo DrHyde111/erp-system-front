@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {useAppContext} from "../../services/context.services";
 import {
+    deleteEmployee,
     getProduct,
     getWarehouseOverseers,
-    getWarehouseProducts,
+    getWarehouseProducts, removeProduct,
     unasignWarehouseOverseer
 } from "../../services/api.services";
 import {useNavigate, useParams} from "react-router-dom";
@@ -33,8 +34,9 @@ export default function Product() {
         setIsLoading(false)
     }, [])
 
-    async function handleRemove(overseerId: string) {
-
+    async function handleRemove() {
+        let response = await removeProduct(id, productId)
+        return navigate(`../warehouses/${id}/products`)
     }
 
     return (
@@ -86,7 +88,10 @@ export default function Product() {
                                         <strong className={"m-0"}>Possible actions</strong>
                                     </div>
                                     <div className={"card-body"}>
-
+                                        <button className={"btn btn-danger"} onClick={() => handleRemove()}>Remove</button>
+                                    </div>
+                                    <div className={"card-body"}>
+                                        <button className={"btn btn-primary"} onClick={() => navigate("move")}>Move to other warehouse</button>
                                     </div>
                                 </div>
                             </div>
