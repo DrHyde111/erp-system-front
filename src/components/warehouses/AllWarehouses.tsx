@@ -4,7 +4,7 @@ import {
     attendanceControl,
     getEmployeeAttendances,
     getEmployees,
-    getLastUserAttendance, getWarehouses
+    getLastUserAttendance, getOverseerWarehouses, getWarehouses
 } from "../../services/api.services";
 import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
@@ -18,7 +18,13 @@ export default function AllWarehouses() {
 
     useEffect(() => {
         async function onLoad() {
-            let response = await getWarehouses();
+            console.log(context)
+            let response
+            if (context.user.Role == "Admin" || context.user.Role === "SuperUser") {
+                response = await getWarehouses();
+            } else {
+                response = await getOverseerWarehouses(context.user.id)
+            }
             setWarehouses(response);
         }
 
@@ -63,9 +69,13 @@ export default function AllWarehouses() {
                                         </th>
                                     </tr>
                                 ))
-                            ) : (
-                                <p>You dont have attendances</p>
-                            )}
+                            ) : context.user.Role == "Admin" || context.user.Role === "SuperUser" ? (
+                                    <p>There are no warehouses</p>
+                                ) :
+                                <p>
+                                    You dont overseer any warehouse.
+                                </p>
+                            }
                             </tbody>
                         </table>
                     </div>
